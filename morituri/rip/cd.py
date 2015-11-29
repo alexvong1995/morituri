@@ -274,7 +274,7 @@ Install pycdio and run 'rip offset find' to detect your drive's offset.
         self.program.result.profilePipeline = profile.pipeline
         elementFactory = profile.pipeline.split(' ')[0]
         self.program.result.gstreamerVersion = gstreamer.gstreamerVersion()
-        self.program.result.gstPythonVersion = gstreamer.gstPythonVersion()
+        self.program.result.PYGIVersion = gstreamer.PYGIVersion()
         self.program.result.encoderVersion = gstreamer.elementFactoryVersion(
             elementFactory)
 

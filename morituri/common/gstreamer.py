@@ -31,8 +31,10 @@ from morituri.common import log
 def removeAudioParsers():
     log.debug('gstreamer', 'Removing buggy audioparsers plugin if needed')
 
-    import gst
-    registry = gst.registry_get_default()
+    import gi
+    gi.require_version('Gst', '1.0')
+    from gi.repository import Gst
+    registry = Gst.Registry.get()
 
     plugin = registry.find_plugin("audioparsersbad")
     if plugin:
@@ -54,16 +56,22 @@ def removeAudioParsers():
         registry.remove_plugin(plugin)
 
 def gstreamerVersion():
-    import gst
-    return _versionify(gst.version())
+    import gi
+    gi.require_version('Gst', '1.0')
+    from gi.repository import Gst
+    return _versionify(Gst.version())
 
-def gstPythonVersion():
-    import gst
-    return _versionify(gst.pygst_version)
+def pyGIVersion():
+    import gi
+    gi.require_version('Gst', '1.0')
+    from gi.repository import Gst
+    return _versionify(gi.version_info)
 
 _VERSION_RE = re.compile(
     "Version:\s*(?P<version>[\d.]+)")
 
+# FIXME: gstreamer 1.x should have fix this bug
+# FIXME: find a less hackish way in gstreamer 1.x to make this work
 def elementFactoryVersion(name):
     # surprisingly, there is no python way to get from an element factory
     # to its plugin and its version directly; you can only compare

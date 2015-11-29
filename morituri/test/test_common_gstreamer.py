@@ -13,7 +13,7 @@ class VersionTestCase(common.TestCase):
         self.failUnless(version.startswith('0.'))
 
     def testGSTPython(self):
-        version = gstreamer.gstPythonVersion()
+        version = gstreamer.pyGIVersion()
         self.failUnless(version.startswith('0.'))
 
     def testFlacEnc(self):

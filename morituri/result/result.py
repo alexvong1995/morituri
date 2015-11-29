@@ -106,7 +106,7 @@ class RipResult:
     cdparanoiaDefeatsCache = None
 
     gstreamerVersion = None
-    gstPythonVersion = None
+    pyGIVersion = None
     encoderVersion = None
 
     profileName = None
